@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel = "stylesheet" type = "text/css" href = "assets/css/style.css" />
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script type = "text/javascript" src = "ajax.js"></script>
+</head>
+<body>
+	<div id = "container">
+		<div id = "login-container" class = "container">
+		<h2> LOGIN</h2>
+		
+		<form action = "" method = "post" id = "login-form">
+			<label for="logName">Enter a user name:</label>
+			<input type="text" name = "logName" id = "logName"/>
+			<label for="logPassword">Enter a password:</label>
+			<input type="password" name = "logPassword" id = "logPassword"/>
+			<button type ="submit" class = "btn" id= "login-btn">Send</button>
+		</form>
+		</div>
+		<div id = "table-container" class = "container">
+			<table>
+				<tr>
+					<td>#</td>
+					<td>Name</td>
+					<td>Quality</td>
+					<td>Price</td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+			</table>
+		</div>
+		<div id = "add-container" class = "container">
+			<form action="" method = "post" id = "add-form">
+				<label for="addNumber">#</label>
+				<input type="text" name="addNumber" />
+				<label for="addName">Name:</label>
+				<input type="text" name="addName" />
+				<label for="addQuantity">Quantity:</label>
+				<input type="text" name="addQuantity" />
+				<label for="addPrice">Price</label>
+				<input type="text" name="addPrice" />
+				<button type ="submit" class = "btn">Send</button>
+			</form>
+		</div>
+	</div>
+<script type ="text/javascript">
+
+	$(function(){
+		$('#login-btn').on('click', function (e) {
+			e.preventDefault();
+			(function checkInput(){
+				
+				if ( ($('#logName').val()) && ($('#logPassword').val()) ){
+					console.log('yes');
+				} else {
+					console.log('no');
+				
+				}
+			})();
+			var postLogin = {
+					logName: $('#logName').val(),
+					logPassword: $('#logPassword').val()
+			}
+			
+			
+			$.post("server.php", postLogin, function (status) {
+				console.log(status);
+			})
+			
+		});
+	});
+</script>
+</body>
+</html>
